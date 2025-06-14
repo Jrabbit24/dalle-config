@@ -1,46 +1,114 @@
-def load_config(self):
-    try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        req = urllib.request.Request(self.config_url, headers=headers)
-        
-        with urllib.request.urlopen(req) as response:
-            raw_data = response.read().decode('utf-8')
-            
-            # Periksa apakah respons kosong
-            if not raw_data.strip():
-                raise ValueError("Empty response from server")
-                
-            try:
-                config = json.loads(raw_data)
-                self.current_config = config
-                messagebox.showinfo(
-                    "Berhasil" if self.ui_language == "id" else "Success",
-                    "Konfigurasi berhasil dimuat dari GitHub!" if self.ui_language == "id" 
-                    else "Config loaded from GitHub!"
-                )
-            except json.JSONDecodeError as e:
-                raise ValueError(f"Invalid JSON format: {str(e)}. Raw content: {raw_data[:200]}")
-                    
-    except Exception as e:
-        error_msg = str(e)
-        print(f"Error loading config: {error_msg}")
-        
-        # Dapatkan informasi debug tambahan
-        debug_info = ""
-        try:
-            # Coba dapatkan konten untuk debug
-            with urllib.request.urlopen(req) as debug_res:
-                debug_content = debug_res.read().decode('utf-8', errors='replace')
-                debug_info = f"\n\nDebug Info:\nStatus: {debug_res.status}\nContent: {debug_content[:500]}"
-        except Exception as debug_e:
-            debug_info = f"\n\nDebug Info Error: {str(debug_e)}"
-        
-        messagebox.showwarning(
-            "Peringatan" if self.ui_language == "id" else "Warning",
-            f"Tidak dapat memuat konfigurasi online:\n{error_msg}{debug_info}\n\n" +
-            "Menggunakan konfigurasi default." if self.ui_language == "id"
-            else f"Couldn't load online config:\n{error_msg}{debug_info}\n\nUsing default configuration."
-        )
-        self.current_config = self.default_config
-    
-    self.update_ui_with_config()
+{
+    "languages": {
+        "Indonesian": "id",
+        "English": "en",
+        "Japanese": "ja",
+        "Spanish": "es",
+        "French": "fr",
+        "German": "de"
+    },
+    "compositions": [
+        "Close-up", 
+        "Medium shot", 
+        "Full shot",
+        "Extreme close-up",
+        "Low angle", 
+        "High angle", 
+        "Dutch angle",
+        "Over-the-shoulder",
+        "Bird's eye view",
+        "Worm's eye view",
+        "Macro",
+        "Establishing shot",
+        "Rule of thirds",
+        "Center framed",
+        "Diagonal composition"
+    ],
+    "lightings": [
+        "Golden hour",
+        "Blue hour",
+        "Neon lighting",
+        "Rembrandt lighting",
+        "Butterfly lighting",
+        "Split lighting",
+        "Loop lighting",
+        "Backlighting",
+        "Rim lighting",
+        "Softbox lighting",
+        "Hard lighting",
+        "Natural ambient",
+        "Candlelight",
+        "Studio lighting",
+        "Chiaroscuro",
+        "High-key lighting",
+        "Low-key lighting",
+        "Volumetric lighting"
+    ],
+    "styles": [
+        "Cinematic",
+        "3D rendering",
+        "Hyperrealistic",
+        "Photorealistic",
+        "Film noir",
+        "Studio portrait",
+        "Editorial photography",
+        "Fashion photography",
+        "Product photography",
+        "Architectural",
+        "Minimalist",
+        "Surrealist",
+        "Concept art",
+        "Digital painting",
+        "Matte painting",
+        "Watercolor",
+        "Oil painting",
+        "Charcoal sketch",
+        "Anime style",
+        "Cyberpunk",
+        "Steampunk",
+        "Vintage film",
+        "Polaroid",
+        "Double exposure"
+    ],
+    "focus_techniques": [
+        "Shallow depth of field",
+        "Deep focus",
+        "Tilt-shift",
+        "Bokeh",
+        "Selective focus",
+        "Soft focus",
+        "Rack focus",
+        "Split diopter",
+        "Macro focus",
+        "Wide angle",
+        "Telephoto compression",
+        "Fish-eye",
+        "Panoramic focus",
+        "Focus stacking"
+    ],
+    "effects": [
+        "Film grain",
+        "Vignetting",
+        "Chromatic aberration",
+        "Lens flare",
+        "Light leak",
+        "HDR",
+        "Cross processing",
+        "Infrared",
+        "Tilt-shift blur",
+        "Motion blur",
+        "Gaussian blur",
+        "Duotone",
+        "Halftone",
+        "Glitch effect",
+        "VHS effect",
+        "Scanlines",
+        "Bloom effect",
+        "God rays",
+        "Light streaks",
+        "Rain droplets",
+        "Fog overlay",
+        "Dust particles",
+        "Light painting"
+    ]
+}
