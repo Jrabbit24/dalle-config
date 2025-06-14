@@ -1,27 +1,21 @@
 {
     "languages": {
         "English": "en",
-        "Indonesian": "id",
-        "Japanese": "ja"
+        "Indonesian": "id"
     },
     "compositions": [
-        "Close-up", "Medium shot", "Full shot",
-        "Low angle", "High angle", "Dutch angle"
+        "Close-up", "Medium shot", "Low angle"
     ],
     "lightings": [
-        "Rembrandt lighting", "Butterfly lighting",
         "Golden hour", "Neon lighting"
     ],
     "styles": [
-        "Hyperrealistic", "Cinematic",
-        "Digital painting", "3D rendering"
+        "Cinematic", "3D rendering"
     ],
     "focus_techniques": [
-        "Shallow depth of field", "Tilt-shift",
-        "Macro focus", "Fish-eye"
+        "Shallow depth of field"
     ],
     "effects": [
-        "Film grain", "Lens flare",
-        "Glitch effect", "God rays"
+        "Film grain"
     ]
 }
