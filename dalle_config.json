@@ -1,7 +1,8 @@
 {
     "languages": {
-        "English": "en",
         "Indonesian": "id"
+        "English": "en",
+        
     },
     "compositions": [
         "Close-up", "Medium shot", "Low angle"
